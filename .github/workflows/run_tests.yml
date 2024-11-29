@@ -3,13 +3,14 @@ name: Run autotest
 
 on: 
   workflow_dispatch:
-    deployment_target:
-      description: select tests to run
-      required: true
-      type: choice
-      default: all
-      options:
-        - all
+    inputs: 
+      deployment_target:
+        description: select tests to run
+        required: true
+        type: choice
+        default: all
+        options:
+          - all
 
 jobs: 
   run-tests:
@@ -23,6 +24,6 @@ jobs:
         with: 
           python-version: "3.13.0"
       - name: install dependencies
-          run: pip install -r requirements.txt
+        run: pip install -r requirements.txt
       - name: Run tests
         run: pytest -v
